@@ -1,0 +1,49 @@
+{
+  "institutions": {
+    "daniq": {
+      "password": "123456",
+      "uuid": "16a5739c-1407-497b-b0f8-a79e3418d66e"
+    },
+    "rustem": {
+      "password": "123456",
+      "uuid": "de665651-046c-47e1-a1ae-8f7393716ab5"
+    },
+    "alua": {
+      "password": "123456",
+      "uuid": "e7a9cc78-9c9a-4323-9518-d484b8061f00"
+    }
+  },
+  
+  "organizations": {
+    "3fefb29d-a68d-474d-acb1-876dc0d7f4c2": {
+      "name": "Squad of Serpents"
+    },
+    "073aa552-1e73-446c-9ccb-c374b04da2ef": {
+      "name": "Brigade of the Beast"
+    },
+    "44aae98f-2723-47cf-901b-5c0e2c7d029d": {
+      "name": "Corps of the Mutant"
+    },
+    "45e6e9b5-3dc5-4c69-aee2-312876b93a05": {
+      "name": "Company of Shadow"
+    },
+    "370a5791-5c83-49fd-ba0b-dc0cdb94f00b": {
+      "name": "Virus Brotherhood"
+    },
+    "81513114-02d4-44b6-ab1b-cbe189c3e95e": {
+      "name": "Ash Force"
+    }
+  },
+  
+  "users": {
+    "c76e30a2-bf71-4872-a808-f6c67358fd9e": {
+      "name": "Amaranthae Olomaer"
+    },
+    "b72e153a-498f-40a0-87b5-603848096503": {
+      "name": "Symrustar Aevaris"
+    },
+    "8921bdb0-4492-47b6-a8a7-65906f43ba72": {
+      "name": "Kethryllia Loramoira"
+    }
+  }
+}
