@@ -29,6 +29,10 @@ class RoleChooser extends Component{
                                     </a>
                                 </div>
                             </div>
+                            
+                            <div className="panel-footer">
+                                By Mussabekov Daniyar, Burkhanov Rustem and Bulgakbayeva Alua CSSE 161M
+                            </div>
                         </div>
 
 

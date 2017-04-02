@@ -16,7 +16,15 @@
   
   "organizations": {
     "3fefb29d-a68d-474d-acb1-876dc0d7f4c2": {
-      "name": "Squad of Serpents"
+      "name": "Squad of Serpents",
+      "certificates": {
+        "19b2d212-b3ab-41b3-93b5-46b1f1f349de": {
+          "user": "c76e30a2-bf71-4872-a808-f6c67358fd9e",
+          "date": "15:22 02.04.2017",
+          "sha": "843242F2D7159531967B4B9B8B3A18BCDBB2795E8CF57156F899C96FA87BCEAB",
+          "name": "Super Certificate"
+        }
+      }
     },
     "073aa552-1e73-446c-9ccb-c374b04da2ef": {
       "name": "Brigade of the Beast"
@@ -37,7 +45,15 @@
   
   "users": {
     "c76e30a2-bf71-4872-a808-f6c67358fd9e": {
-      "name": "Amaranthae Olomaer"
+      "name": "Amaranthae Olomaer",
+      "certificates": {
+        "19b2d212-b3ab-41b3-93b5-46b1f1f349de": {
+          "organization": "3fefb29d-a68d-474d-acb1-876dc0d7f4c2",
+          "date": "15:22 02.04.2017",
+          "sha": "843242F2D7159531967B4B9B8B3A18BCDBB2795E8CF57156F899C96FA87BCEAB",
+          "name": "Super Certificate"
+        }
+      }
     },
     "b72e153a-498f-40a0-87b5-603848096503": {
       "name": "Symrustar Aevaris"

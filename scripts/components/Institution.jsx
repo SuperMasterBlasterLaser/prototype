@@ -1,30 +1,8 @@
 import React, {Component} from 'react'
 import * as constants from '../constants.js'
+import {NavBar} from './Common'
+
 import * as uuid from 'uuid'
-
-
-function NavBar(props) {
-    return (
-        <div className="navbar navbar-default">
-            <div className="container-fluid">
-                <div className="navbar-header">
-                    <a className="navbar-brand">
-                        {props.userData.login}
-                    </a>
-                    
-                </div>
-
-                <div className="collapse navbar-collapse">
-                    <p className="navbar-text navbar-right">
-                        <a className="navbar-link" onClick={() => {props.restart()}}>Logout</a>
-                    </p>    
-                </div>
-                
-            </div>
-        </div>
-    )
-}
-
 
 
 class Institution extends Component{
@@ -91,7 +69,7 @@ class Institution extends Component{
                 <div className="jumbotron">
                     <h1>{this.props.userData.login}</h1>
                     <h2>{this.props.userData.uuid}</h2>
-                    <h3>Organizations: {this.state.organizations.length}</h3>
+                    <h3>Organizations: {Object.keys(this.state.organizations).length}</h3>
                 </div>
                 
                 

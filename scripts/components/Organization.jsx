@@ -1,0 +1,124 @@
+import React, {Component} from 'react'
+import * as constants from '../constants.js'
+import {NavBar, Certificates} from './Common'
+import * as UUID from 'uuid'
+import * as sha256 from 'js-sha256'
+
+
+
+class Organization extends Component{
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            certificates: {},
+            errorText: '', successText: '', userUUID: '', newCertName: '',
+            organizationRef: this.props.database.ref(`/organizations/${this.props.userData.uuid}`),
+            usersRef: this.props.database.ref('/users')
+        }
+    }
+
+    componentDidMount() {
+        this.state.organizationRef.child('certificates').on('value', (snapshot) => {
+            if (snapshot.val()) {
+                this.setState({certificates: snapshot.val(), errorText: ''})
+            } else {
+                this.setState({errorText: 'Connection problems'})
+            }
+        });
+        
+        this.state.organizationRef.child('certificates').on('child_added', (snapshot) => {
+            this.setState({successText: snapshot.val().name + " is added"})
+        });
+    }
+    
+    handleInputChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    };
+    
+    addNewCert = () => {
+        if (this.state.newCertName.length == 0) {
+            this.setState({errorText: 'Enter Cert Name'});
+            return;
+        }
+        
+        if (this.state.userUUID.length == 0) {
+            this.setState({errorText: 'Enter user UUID'});
+            return;
+        }
+        
+        this.state.usersRef.child(this.state.userUUID).once('value').then((snapshot) => {
+            let user = snapshot.val();
+            if (!user) {
+                this.setState({errorText: `User with ${this.state.userUUID} does not exist!`});
+                return;
+            }
+            
+            let username = user.name;
+            let date = (new Date()).toISOString();
+            let uuid = UUID.v4();
+            let sha = sha256.sha256(`${this.props.userData.uuid}_${uuid}`);
+            
+            this.state.organizationRef.child(`certificates/${uuid}`).set({
+                user: this.state.userUUID,
+                date: date,
+                name: this.state.newCertName,
+                sha: sha
+            });
+            
+            this.state.usersRef.child(`${this.state.userUUID}/certificates/${uuid}`).set({
+                organization: this.props.userData.uuid,
+                date: date,
+                name: this.state.newCertName,
+                sha: sha
+            });
+
+            this.setState({newCertName: '', errorText: '', userUUID: ''})
+        });
+    };
+     
+    render() {
+        
+        
+        
+        return (
+            <div className="container">
+                <NavBar userData={this.props.userData} restart={this.props.restart}/>
+                <div className="jumbotron">
+                    <h1>{this.props.userData.name}</h1>
+                    <h2>{this.props.userData.uuid}</h2>
+                    <h3>Certificates: {Object.keys(this.state.certificates).length}</h3>
+                </div>
+
+                {this.state.successText && <div className="alert alert-success">{this.state.successText}</div>}
+                <br/>
+                {this.state.errorText && <div className="alert alert-danger">{this.state.errorText}</div>}
+
+                <div className="row">
+                    <div className="col-xs-12">
+                        <div className="form-inline">
+                            <div className="form-group">
+                                <label className="sr-only" htmlFor="userUUID">userUUID</label>
+                                <input id="userUUID" value={this.state.userUUID} onChange={this.handleInputChange} name="userUUID" placeholder="User UUID" type="text" className="form-control"/>
+                            </div>
+                            <div className="form-group">
+                                <label className="sr-only" htmlFor="newCertName">newCertName</label>
+                                <input value={this.state.newCertName} onChange={this.handleInputChange} name="newCertName" placeholder="Certificate Name" type="text" className="form-control"/>
+                            </div>
+                            <button className="btn btn-default" type="button" onClick={this.addNewCert}>Add</button>
+                        </div>
+                    </div>
+                </div>
+                    
+                
+                
+                <h3 className="page-header">Certificates</h3>
+                <Certificates isOrg={true} certificates={this.state.certificates}/>
+            </div>
+        )
+    }
+}
+
+export default Organization

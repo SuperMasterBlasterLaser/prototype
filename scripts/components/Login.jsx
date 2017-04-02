@@ -48,13 +48,12 @@ function CenterContainerPanel(props) {
 }
 
 
-
-class Login extends Component {
+class InstitutionForm extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {errorText: "", login: "", password: ""}
     }
-    
+
     handleInputChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -63,59 +62,167 @@ class Login extends Component {
     
     login = (e) => {
         e.preventDefault();
-        
         if (!this.state.login) {
             this.setState({errorText: 'Enter login'});
             return;
         }
-        
+
         if (!this.state.password) {
             this.setState({errorText: 'Enter password'})
         }
-        
+
         this.props.database.ref(`/institutions/${this.state.login}`).once('value').then((snapshot) => {
             let result = snapshot.val();
-            
+
             if (!result || result.password !== this.state.password) {
                 this.setState({errorText: 'Wrong login or password'});
                 return;
             }
-            
+
             result.login = this.state.login;
-            
+
             this.props.loggedIn(result);
         })
     };
     
     render() {
+        return (
+            <form onSubmit={this.login}>
+                {this.state.errorText && <div className="alert alert-danger">{this.state.errorText}</div>}
+
+                <label htmlFor="login">Login:</label>
+                <input id="login" type="text" name="login" className="form-control"
+                       value={this.state.login} onChange={this.handleInputChange}/>
+
+                <label htmlFor="password">Password:</label>
+                <input id="password" type="password" name="password" className="form-control"
+                       value={this.state.password} onChange={this.handleInputChange}/>
+
+                <br/>
+                <input type="submit" className="btn btn-primary" value="Login"/>
+            </form>
+        )
+    }
+}
+
+
+class OrganizationForm extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {errorText: '', uuid: ''}
+    }
+
+    handleInputChange = (e) => {
+        this.setState({
+            uuid: e.target.value
+        })
+    };
+    
+    login = (e) => {
+        e.preventDefault();
+        
+        if (this.state.uuid.length === 0) {
+            this.setState({errorText: 'Enter uuid'});
+            return;
+        }
+
+        this.props.database.ref(`/organizations/${this.state.uuid}`).once('value').then((snapshot) => {
+            let result = snapshot.val();
+
+            if (!result) {
+                this.setState({errorText: 'Wrong UUID'});
+                return;
+            }
+
+            result.uuid = this.state.uuid;
+
+            this.props.loggedIn(result);
+        })
+    };
+    
+    render() {
+        return (
+            <form onSubmit={this.login}>
+                {this.state.errorText && <div className="alert alert-danger">{this.state.errorText}</div>}
+
+                <label htmlFor="login">UUID:</label>
+                <input id="uuid" type="text" name="uuid" className="form-control"
+                       value={this.state.uuid} onChange={this.handleInputChange}/>
+                <br/>
+                <input type="submit" className="btn btn-primary" value="Login"/>
+            </form>
+        )
+    }
+}
+
+class UserForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {errorText: '', uuid: ''}
+    }
+
+    handleInputChange = (e) => {
+        this.setState({
+            uuid: e.target.value
+        })
+    };
+
+    login = (e) => {
+        e.preventDefault();
+
+        if (this.state.uuid.length === 0) {
+            this.setState({errorText: 'Enter uuid'});
+            return;
+        }
+        
+        this.props.database.ref(`/users/${this.state.uuid}`).once('value').then((snapshot)=> {
+            let result = snapshot.val();
+            
+            result.uuid = this.state.uuid;
+            
+            this.props.loggedIn(result);
+        });
+    };
+
+    render() {
+        return (
+            <form onSubmit={this.login}>
+                {this.state.errorText && <div className="alert alert-danger">{this.state.errorText}</div>}
+
+                <label htmlFor="login">UUID:</label>
+                <input id="uuid" type="text" name="uuid" className="form-control"
+                       value={this.state.uuid} onChange={this.handleInputChange}/>
+                <br/>
+                <input type="submit" className="btn btn-primary" value="Login"/>
+            </form>
+        )
+    }
+}
+
+class Login extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {errorText: "", login: "", password: ""}
+    }
+    
+    
+    
+    render() {
+        
+        let form = <div className="alert alert-danger">Not implemented</div>;
+        
+        if (this.props.role === constants.ROLE_INSTITUTION) 
+            form = <InstitutionForm database={this.props.database} loggedIn={this.props.loggedIn}/>;
+        else if (this.props.role === constants.ROLE_ORGANIZATION)
+            form = <OrganizationForm database={this.props.database} loggedIn={this.props.loggedIn}/>;
+        else if (this.props.role === constants.ROLE_USER)
+            form = <UserForm database={this.props.database} loggedIn={this.props.loggedIn}/>;
         
         return (
             <CenterContainerPanel>
                 <LoginHeader type={this.props.role} restart={this.props.restart}/>
                 <div className="panel-body">
-                    {
-                        this.props.role === constants.ROLE_INSTITUTION ? (
-                            
-                            <form onSubmit={this.login}>
-                                {this.state.errorText && <div className="alert alert-danger">{this.state.errorText}</div>}
-                                
-                                <label htmlFor="login">Login:</label>
-                                <input id="login" type="text" name="login" className="form-control" 
-                                       value={this.state.login} onChange={this.handleInputChange}/>
-                                
-                                <label htmlFor="password">Password:</label>
-                                <input id="password" type="password" name="password" className="form-control" 
-                                       value={this.state.password} onChange={this.handleInputChange}/>
-                                
-                                <br/>
-                                <input type="submit" className="btn btn-primary" value="Login"/>
-                            </form>
-                                
-                            ): (
-                                <div className="alert alert-danger">Only Institution is Available</div>
-                            )
-                        
-                    }
+                    {form}
                 </div>
             </CenterContainerPanel>
         )
