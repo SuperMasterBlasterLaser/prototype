@@ -22,16 +22,53 @@ function NavBar(props) {
         </div>
     )
 }
+function Buttons(props){
+    if (props.isPending){
+        return (
+
+            <div className="row">
+                <div className="btn-group btn-group-lg btn-group-justified" role="group">
+
+                    <a href="#" role="button" type="button" className="btn btn-default" onClick={() => {
+                            props.database.ref(`certificates/${props.uuid}`).set({
+                                organization: props.certificate.organization,
+                                user: props.certificate.user,
+                                date: props.certificate.date,
+                                name: props.certificate.name,
+                                sha: props.certificate.sha
+                            });
+                            props.database.ref(`pending_certificates/`).child(props.uuid).remove();
+                            props.mount();
+                        }}>
+                        <span className="glyphicon glyphicon-ok"></span> Accept
+                    </a>
+                    <a href="#" role="button" type="button" className="btn btn-default" onClick={() => {
+                            props.database.ref(`pending_certificates/`).child(props.uuid).remove();
+                            props.mount();
+                        }}>
+                        <span className="glyphicon glyphicon-remove"></span> Reject
+                    </a>
+                </div>
+
+            </div>
+        )
+    } else return(
+        <div/>
+    );
+
+}
+
 
 function Certificates(props) {
 
     let certificates = [];
 
     Object.keys(props.certificates).forEach((key, index) => {
+        let hockey = key;
         let cert = (
             <div key={key} className="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                 <div className="panel panel-default">
-                    <div className="panel-heading">{key}</div>
+                    <div className="panel-heading">as{hockey}</div>
                     <div className="panel-body">
                         <label className="label label-info">Name</label>
                         <div className="well">{props.certificates[key].name}</div>
@@ -44,11 +81,13 @@ function Certificates(props) {
 
                         <label className="label label-info">SHA256</label>
                         <div className="well"><p style={{wordWrap:'break-word'}}>{props.certificates[key].sha}</p></div>
+                        <Buttons isPending={props.isPending} database={props.database} uuid={hockey} certificate={props.certificates[key]}/>
+
                     </div>
                 </div>
             </div>
         );
-        certificates.push(cert)
+        certificates.push(cert);
     });
 
     return <div className="row">{certificates}</div>;

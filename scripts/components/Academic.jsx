@@ -6,7 +6,7 @@ import * as sha256 from 'js-sha256'
 
 
 
-class Organization extends Component{
+class Academic extends Component{
     constructor(props) {
         super(props);
         
@@ -14,7 +14,7 @@ class Organization extends Component{
             certificates: {},
             pending_certificates: {},
             errorText: '', successText: '', userUUID: '', newCertName: '',
-            organizationRef: this.props.database.ref(`/organizations/${this.props.userData.uuid}`),
+            organizationRef: this.props.database.ref(`/academics/${this.props.userData.uuid}`),
             usersRef: this.props.database.ref('/users')
         }
     }
@@ -81,9 +81,7 @@ class Organization extends Component{
     };
      
     render() {
-        
-        
-        
+
         return (
             <div className="container">
                 <NavBar userData={this.props.userData} restart={this.props.restart}/>
@@ -125,4 +123,4 @@ class Organization extends Component{
     }
 }
 
-export default Organization
+export default Academic
