@@ -52,7 +52,7 @@ function CenterContainerPanel(props) {
     )
 }
 
-
+/*
 class InstitutionForm extends Component {
     constructor(props) {
         super(props);
@@ -103,6 +103,57 @@ class InstitutionForm extends Component {
                 <input id="password" type="password" name="password" className="form-control"
                        value={this.state.password} onChange={this.handleInputChange}/>
 
+                <br/>
+                <input type="submit" className="btn btn-primary" value="Login"/>
+            </form>
+        )
+    }
+}
+*/
+
+class AcademicForm extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {errorText: '', uuid: ''}
+    }
+
+    handleInputChange = (e) => {
+        this.setState({
+            uuid: e.target.value
+        })
+    };
+    
+    login = (e) => {
+        e.preventDefault();
+        
+        if (this.state.uuid.length === 0) {
+            this.setState({errorText: 'Enter uuid'});
+            return;
+        }
+
+        this.props.database.ref(`/academics/${this.state.uuid}`).once('value').then((snapshot) => {
+            let result = snapshot.val();
+
+            if (!result) {
+                this.setState({errorText: 'Wrong UUID'});
+                return;
+            }
+
+            result.uuid = this.state.uuid;
+            console.log("success, uuid = " + result.uuid);
+
+            this.props.loggedIn(result);
+        })
+    };
+    
+    render() {
+        return (
+            <form onSubmit={this.login}>
+                {this.state.errorText && <div className="alert alert-danger">{this.state.errorText}</div>}
+
+                <label htmlFor="login">UUID:</label>
+                <input id="uuid" type="text" name="uuid" className="form-control"
+                       value={this.state.uuid} onChange={this.handleInputChange}/>
                 <br/>
                 <input type="submit" className="btn btn-primary" value="Login"/>
             </form>
@@ -206,7 +257,7 @@ class UserForm extends Component {
 
 class Login extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {errorText: "", login: "", password: ""}
     }
     
@@ -215,11 +266,13 @@ class Login extends Component {
     render() {
         
         let form = <div className="alert alert-danger">Not implemented</div>;
-        
+        /*
         if (this.props.role === constants.ROLE_INSTITUTION) 
-            form = <InstitutionForm database={this.props.database} loggedIn={this.props.loggedIn}/>;
-        else if (this.props.role === constants.ROLE_ORGANIZATION)
+            form = <InstitutionForm database={this.props.database} loggedIn={this.props.loggedIn}/>; */
+        if (this.props.role === constants.ROLE_ORGANIZATION)
             form = <OrganizationForm database={this.props.database} loggedIn={this.props.loggedIn}/>;
+        else if (this.props.role === constants.ROLE_ACADEMIC)
+            form = <AcademicForm database={this.props.database} loggedIn={this.props.loggedIn}/>;
         else if (this.props.role === constants.ROLE_USER)
             form = <UserForm database={this.props.database} loggedIn={this.props.loggedIn}/>;
         

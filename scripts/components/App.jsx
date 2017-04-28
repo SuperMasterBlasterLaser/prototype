@@ -7,12 +7,14 @@ import Login from './Login'
 import Institution from './Institution'
 import Organization from './Organization'
 import User from './User'
+import Academic from './Academic'
 
 const CONDITION_CHOOSE_THE_ROLE = 0;
 const CONDITION_LOGIN = 1;
-const CONDITION_INSTITUTION = 2;
-const CONDITION_ORGANIZATION = 3;
-const CONDITION_USER = 4;
+// const CONDITION_INSTITUTION = 2;
+const CONDITION_ACADEMIC = 3;
+const CONDITION_ORGANIZATION = 4;
+const CONDITION_USER = 5;
 
 firebase.initializeApp(constants.FIREBASE_CONFIG);
 const database = firebase.database();
@@ -36,8 +38,10 @@ class App extends Component {
     
     loggedIn = (userData) => {
         this.setState({userData: userData});
-        if (this.state.role == constants.ROLE_INSTITUTION)
-            this.setState({condition: CONDITION_INSTITUTION});
+        /*if (this.state.role == constants.ROLE_INSTITUTION)
+            this.setState({condition: CONDITION_INSTITUTION});*/
+        if (this.state.role == constants.ROLE_ACADEMIC)
+            this.setState({condition: CONDITION_ACADEMIC});
         else if (this.state.role == constants.ROLE_ORGANIZATION)
             this.setState({condition: CONDITION_ORGANIZATION});
         else if (this.state.role == constants.ROLE_USER)
@@ -56,11 +60,15 @@ class App extends Component {
         else if (this.state.condition == CONDITION_LOGIN) {
             template = <Login role={this.state.role} loggedIn={this.loggedIn} restart={this.restart} database={database}/>
         }
-        
+        /*
         else if (this.state.condition == CONDITION_INSTITUTION) {
             template = <Institution restart={this.restart} database={database} userData={this.state.userData}/>
         }
-        
+        */
+        else if (this.state.condition == CONDITION_ACADEMIC) {
+            template = <Academic restart={this.restart} database={database} userData={this.state.userData}/>
+        }
+
         else if (this.state.condition == CONDITION_ORGANIZATION) {
             template = <Organization restart={this.restart} database={database} userData={this.state.userData}/>
         }
