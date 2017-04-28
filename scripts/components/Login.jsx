@@ -15,7 +15,7 @@ function LoginHeader(props) {
     }
 
     else if (props.type === constants.ROLE_ORGANIZATION){
-        text = "Login as Organization";
+        text = "Login as Employee";
         glyph = "glyphicon glyphicon-qrcode"
     }
         

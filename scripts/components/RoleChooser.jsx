@@ -22,7 +22,7 @@ class RoleChooser extends Component{
                                         <span className="glyphicon glyphicon-education"></span> Academic
                                     </a>
                                     <a href="#" role="button" type="button" className="btn btn-default" value={constants.ROLE_ORGANIZATION} onClick={() => {this.props.roleChosen(constants.ROLE_ORGANIZATION)}}>
-                                        <span className="glyphicon glyphicon-btc"></span> Organization
+                                        <span className="glyphicon glyphicon-btc"></span> Employee
                                     </a>
                                     <a href="#" role="button" type="button" className="btn btn-default" value={constants.ROLE_USER} onClick={() => {this.props.roleChosen(constants.ROLE_USER)}}>
                                         <span className="glyphicon glyphicon-user"></span> User
