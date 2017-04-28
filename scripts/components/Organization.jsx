@@ -12,6 +12,7 @@ class Organization extends Component{
         
         this.state = {
             certificates: {},
+            pending_certificates: {},
             errorText: '', successText: '', userUUID: '', newCertName: '',
             organizationRef: this.props.database.ref(`/organizations/${this.props.userData.uuid}`),
             usersRef: this.props.database.ref('/users')
@@ -19,14 +20,20 @@ class Organization extends Component{
     }
 
     componentDidMount() {
-        this.state.organizationRef.child('certificates').on('value', (snapshot) => {
+        this.props.database.ref(`/certificates`).orderByChild(`organization`).equalTo(`${this.props.userData.uuid}`).on('value', (snapshot) => {
             if (snapshot.val()) {
                 this.setState({certificates: snapshot.val(), errorText: ''})
             } else {
                 this.setState({errorText: 'Connection problems'})
             }
         });
-        
+
+        this.props.database.ref(`/pending_certificates`).orderByChild(`organization`).equalTo(`${this.props.userData.uuid}`).on('value', (snapshot) => {
+            if (snapshot.val()) {
+                this.setState({pending_certificates: snapshot.val(), errorText: ''})
+            }
+        });
+
         this.state.organizationRef.child('certificates').on('child_added', (snapshot) => {
             this.setState({successText: snapshot.val().name + " is added"})
         });
@@ -60,16 +67,10 @@ class Organization extends Component{
             let date = (new Date()).toISOString();
             let uuid = UUID.v4();
             let sha = sha256.sha256(`${this.props.userData.uuid}_${uuid}`);
-            
-            this.state.organizationRef.child(`certificates/${uuid}`).set({
-                user: this.state.userUUID,
-                date: date,
-                name: this.state.newCertName,
-                sha: sha
-            });
-            
-            this.state.usersRef.child(`${this.state.userUUID}/certificates/${uuid}`).set({
+
+            this.props.database.ref(`/pending_certificates/${uuid}`).set({
                 organization: this.props.userData.uuid,
+                user: this.state.userUUID,
                 date: date,
                 name: this.state.newCertName,
                 sha: sha
@@ -114,8 +115,11 @@ class Organization extends Component{
                     
                 
                 
-                <h3 className="page-header">Certificates</h3>
+                <h3 className="page-header">Accepted Certificates</h3>
                 <Certificates isOrg={true} certificates={this.state.certificates}/>
+
+                <h3 className="page-header">Not Accepted Certificates</h3>
+                <Certificates isOrg={true} certificates={this.state.pending_certificates}/>
             </div>
         )
     }

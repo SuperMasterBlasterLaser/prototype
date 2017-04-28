@@ -8,7 +8,12 @@ function LoginHeader(props) {
         text = "Login as Institution";
         glyph = "glyphicon glyphicon-qrcode"
     }
-        
+
+    if (props.type === constants.ROLE_ACADEMIC) {
+        text = "Login as Academic Institution";
+        glyph = "glyphicon glyphicon-education"
+    }
+
     else if (props.type === constants.ROLE_ORGANIZATION){
         text = "Login as Organization";
         glyph = "glyphicon glyphicon-qrcode"

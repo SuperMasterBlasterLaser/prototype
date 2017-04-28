@@ -1,0 +1,138 @@
+{
+  "certificates" : {
+    "19b2d212-b3ab-41b3-93b5-46b1f1f349de" : {
+      "date" : "15:22 02.04.2017",
+      "name" : "Super Certificate",
+      "organization" : "3fefb29d-a68d-474d-acb1-876dc0d7f4c2",
+      "sha" : "843242F2D7159531967B4B9B8B3A18BCDBB2795E8CF57156F899C96FA87BCEAB",
+      "user" : "c76e30a2-bf71-4872-a808-f6c67358fd9e"
+    },
+    "2b811045-bf1b-4054-ba25-28fcdc2b663b" : {
+      "date" : "2017-04-02T11:57:36.393Z",
+      "name" : "For HIm",
+      "organization" : "0f9e658b-93f1-4136-8e43-d42e16605d16",
+      "sha" : "d9b6c5b3706b499348d6da70fd774b86837c0df12b8ffc3f2d1154bd7490d4b5",
+      "user" : "c76e30a2-bf71-4872-a808-f6c67358fd9e"
+    },
+    "361d33ec-4038-45f7-837c-75e90ce8b7b8" : {
+      "date" : "2017-04-02T10:32:41.312Z",
+      "name" : "Certificate 2",
+      "organization" : "3fefb29d-a68d-474d-acb1-876dc0d7f4c2",
+      "sha" : "6962969a0b71529e2972759c28284a7572e9e3e72e8ef68c2704405a202266b5",
+      "user" : "c76e30a2-bf71-4872-a808-f6c67358fd9e"
+    },
+    "43700d56-d4ef-4da1-b38d-5b0949c2cf6c" : {
+      "date" : "2017-04-27T22:46:30.467Z",
+      "name" : "yoyoyoy",
+      "organization" : "370a5791-5c83-49fd-ba0b-dc0cdb94f00b",
+      "sha" : "177ed923d5a511e2676b7a8cd5db8050c4ba227b463071adf696fc658e46df47",
+      "user" : "c76e30a2-bf71-4872-a808-f6c67358fd9e"
+    },
+    "5b50fa3b-7e8c-4ee9-81e3-11bcc5859fbb" : {
+      "date" : "2017-04-27T20:27:34.617Z",
+      "name" : "yay my first cert",
+      "organization" : "81513114-02d4-44b6-ab1b-cbe189c3e95e",
+      "sha" : "61f7f946171323ef5dd54dad13910ef02327b17ddcc7d0948593349021cf9345",
+      "user" : "8921bdb0-4492-47b6-a8a7-65906f43ba72"
+    },
+    "8e255f61-e013-4312-9804-80abd702c1e4" : {
+      "date" : "2017-04-02T11:07:01.431Z",
+      "name" : "Cool Cert",
+      "organization" : "3fefb29d-a68d-474d-acb1-876dc0d7f4c2",
+      "sha" : "4dd8784ca651fbab1a1f9600585c272e9eba74bfb07a131e34a90a1bbdc17bd8",
+      "user" : "c76e30a2-bf71-4872-a808-f6c67358fd9e"
+    },
+    "8e99b790-348b-43ea-b251-9720c8504a50" : {
+      "date" : "2017-04-02T12:08:34.432Z",
+      "name" : "CertX",
+      "organization" : "8e99b790-348b-43ea-b251-9720c8504a50",
+      "sha" : "ec5e50dcc8d34446649add0631867fcaf75e0de53dcb77a1262187b5c1856fc1",
+      "user" : "c76e30a2-bf71-4872-a808-f6c67358fd9e"
+    },
+    "9c6b035b-4f83-4e08-b05f-bcf28dc069db" : {
+      "date" : "2017-04-27T21:23:46.578Z",
+      "name" : "accept me",
+      "organization" : "44aae98f-2723-47cf-901b-5c0e2c7d029d",
+      "sha" : "25ae9b13ca974929aaf2928aeddff1d7aee6f2bf744c68712d9a7378f132c9b0",
+      "user" : "b72e153a-498f-40a0-87b5-603848096503"
+    },
+    "a49331b7-d0f4-4baa-94fc-562a1e7fd626" : {
+      "date" : "2017-04-13T15:30:41.543Z",
+      "name" : "Super Cert",
+      "organization" : "3fefb29d-a68d-474d-acb1-876dc0d7f4c2",
+      "sha" : "e4f1e16b161a8701aa607b2dfc3bcac28523d20cb04c9c41209fb51fe382f715",
+      "user" : "b72e153a-498f-40a0-87b5-603848096503"
+    },
+    "ef450df4-de6d-4d75-a531-bbf4944342e7" : {
+      "date" : "2017-04-27T22:48:54.900Z",
+      "name" : "certttt",
+      "organization" : "370a5791-5c83-49fd-ba0b-dc0cdb94f00b",
+      "sha" : "6375509c1076884f8a5129f8457cc5cceff1e621278a3e48498ed16bb0e2e65c",
+      "user" : "8921bdb0-4492-47b6-a8a7-65906f43ba72"
+    },
+    "f73d1e0e-7cb0-4959-9640-411213edd8e7" : {
+      "date" : "2017-04-27T22:49:10.379Z",
+      "name" : "You there yet?",
+      "organization" : "370a5791-5c83-49fd-ba0b-dc0cdb94f00b",
+      "sha" : "37200882083eb6d01a2f4275551f0bec822db164fd2e2bae2a521eed86223612",
+      "user" : "8921bdb0-4492-47b6-a8a7-65906f43ba72"
+    }
+  },
+  "institutions" : {
+    "alua" : {
+      "password" : "123456",
+      "uuid" : "e7a9cc78-9c9a-4323-9518-d484b8061f00"
+    },
+    "daniq" : {
+      "password" : "123456",
+      "uuid" : "16a5739c-1407-497b-b0f8-a79e3418d66e"
+    },
+    "rustem" : {
+      "password" : "123456",
+      "uuid" : "de665651-046c-47e1-a1ae-8f7393716ab5"
+    }
+  },
+  "organizations" : {
+    "073aa552-1e73-446c-9ccb-c374b04da2ef" : {
+      "name" : "Brigade of the Beast"
+    },
+    "0f9e658b-93f1-4136-8e43-d42e16605d16" : {
+      "name" : "Super Testing ORG"
+    },
+    "370a5791-5c83-49fd-ba0b-dc0cdb94f00b" : {
+      "name" : "Virus Brotherhood"
+    },
+    "3fefb29d-a68d-474d-acb1-876dc0d7f4c2" : {
+      "name" : "Squad of Serpents"
+    },
+    "44aae98f-2723-47cf-901b-5c0e2c7d029d" : {
+      "name" : "Corps of the Mutant"
+    },
+    "45e6e9b5-3dc5-4c69-aee2-312876b93a05" : {
+      "name" : "Company of Shadow"
+    },
+    "81513114-02d4-44b6-ab1b-cbe189c3e95e" : {
+      "name" : "Ash Force"
+    },
+    "b1e28270-b19d-43c0-8d34-2f078d09efa0" : {
+      "name" : "Hello World org"
+    },
+    "ecd853f4-5fc2-4f54-863f-d927268721b7" : {
+      "name" : "Heal the world"
+    },
+    "fb76ab7a-cb31-470c-b506-e6ca768dacd4" : {
+      "name" : "Super Super Org"
+    }
+  },
+  "users" : {
+    "8921bdb0-4492-47b6-a8a7-65906f43ba72" : {
+      "name" : "Kethryllia Loramoira"
+    },
+    "b72e153a-498f-40a0-87b5-603848096503" : {
+      "name" : "Symrustar Aevaris"
+    },
+    "c76e30a2-bf71-4872-a808-f6c67358fd9e" : {
+      "name" : "Amaranthae Olomaer"
+    }
+  }
+}
