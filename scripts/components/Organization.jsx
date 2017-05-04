@@ -13,7 +13,7 @@ class Organization extends Component{
         this.state = {
             certificates: {},
             pending_certificates: {},
-            errorText: '', successText: '', userUUID: '', newCertName: '',
+            errorText: '', successText: '', userUUID: '', newCertName: '', newFileName: '',
             organizationRef: this.props.database.ref(`/organizations/${this.props.userData.uuid}`),
             usersRef: this.props.database.ref('/users')
         }
@@ -73,10 +73,11 @@ class Organization extends Component{
                 user: this.state.userUUID,
                 date: date,
                 name: this.state.newCertName,
-                sha: sha
+                sha: sha,
+                filename: this.state.newFileName
             });
 
-            this.setState({newCertName: '', errorText: '', userUUID: ''})
+            this.setState({newCertName: '', errorText: '', userUUID: '', newFileName: ''})
         });
     };
      
@@ -112,6 +113,11 @@ class Organization extends Component{
                                     <button className="btn btn-default" type="button" onClick={this.addNewCert}>Add</button>
                                 </div>
                             </div>
+                            <div className="form-group">
+                                 <label className="sr-only" htmlFor="newFileName">newFileName</label>
+                                 <input value={this.state.newFileName} onChange={this.handleInputChange} name="newFileName" placeholder="File Name" type="file" className="form-control"/>
+                            </div>
+                            <button className="btn btn-default" type="button" onClick={this.addNewCert}>Add</button>
                         </div>
 
 
