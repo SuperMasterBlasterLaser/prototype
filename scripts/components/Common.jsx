@@ -1,6 +1,18 @@
 import React, {Component} from 'react'
 import * as constants from '../constants.js'
 
+function getFileName(filename){
+    var array = [];
+    if (filename != null){
+        array = filename.split("\\");
+        return array[array.length - 1].toString();
+    } else {
+        return "";
+    }
+
+    //return ("lalala");
+}
+
 function NavBar(props) {
     return (
         <div className="navbar navbar-default">
@@ -81,6 +93,8 @@ function Certificates(props) {
 
                         <label className="label label-info">SHA256</label>
                         <div className="well"><p style={{wordWrap:'break-word'}}>{props.certificates[key].sha}</p></div>
+                        <label className="label label-info">File Name</label>
+                        <div className="well"><p style={{wordWrap:'break-word'}}>{getFileName(props.certificates[key].filename)}</p></div>
                         <Buttons isPending={props.isPending} database={props.database} uuid={hockey} certificate={props.certificates[key]}/>
 
                     </div>
