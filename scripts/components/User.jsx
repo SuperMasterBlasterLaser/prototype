@@ -38,25 +38,29 @@ class User extends Component {
     
     render() {
         return (
-            <div className="container">
-                <NavBar userData={this.props.userData} restart={this.props.restart}/>
-                <div className="jumbotron">
-                    <h1>{this.props.userData.name}</h1>
-                    <h2>{this.props.userData.uuid}</h2>
-                    <h3>Pending Certificates: {Object.keys(this.state.pending_certificates).length}</h3>
-                    <h3>Certificates: {Object.keys(this.state.certificates).length}</h3>
+        <div>
+            <NavBar userData={this.props.userData} restart={this.props.restart}/>
+            <header>
+                <div className="container lower">
+                    <h2>{this.props.userData.name}</h2>
+                    <h3>{this.props.userData.uuid}</h3>
+                    <h4>Pending Certificates: {Object.keys(this.state.pending_certificates).length}</h4>
+                    <h5>Certificates: {Object.keys(this.state.certificates).length}</h5>
+
+                    {this.state.successText && <div className="alert alert-success">{this.state.successText}</div>}
+                    <br/>
+                    {this.state.errorText && <div className="alert alert-danger">{this.state.errorText}</div>}
+
+                    <h3 className="page-header">Pending Certificates</h3>
+                    <Certificates isOrg={false} isPending={true} database={this.props.database} certificates={this.state.pending_certificates} mount={this.componentDidMount}/>
+
+                    <h3 className="page-header">Accepted Certificates</h3>
+                    <Certificates isOrg={false} isPending={false} certificates={this.state.certificates}/>
                 </div>
-
-                {this.state.successText && <div className="alert alert-success">{this.state.successText}</div>}
-                <br/>
-                {this.state.errorText && <div className="alert alert-danger">{this.state.errorText}</div>}
-
-                <h3 className="page-header">Pending Certificates</h3>
-                <Certificates isOrg={false} isPending={true} database={this.props.database} certificates={this.state.pending_certificates} mount={this.componentDidMount}/>
-
-                <h3 className="page-header">Accepted Certificates</h3>
-                <Certificates isOrg={false} isPending={false} certificates={this.state.certificates}/>
-            </div>
+            </header>
+            
+        </div>
+            
         )
     }
 }
