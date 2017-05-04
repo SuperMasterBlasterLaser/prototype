@@ -23,4 +23,16 @@
     background-color: #f5f5f5;
 }
 
+.lower {
+    padding-top: 60px;
+}
+
+.black-font {
+    color: #0f0f0f;
+}
+
+.absolute {
+    position: absolute;
+}
+
 /*body { padding-top: 30px; }*/

@@ -37,6 +37,7 @@ class Academic extends Component{
         this.state.organizationRef.child('certificates').on('child_added', (snapshot) => {
             this.setState({successText: snapshot.val().name + " is added"})
         });
+        
     }
     
     handleInputChange = (e) => {
@@ -84,28 +85,31 @@ class Academic extends Component{
     render() {
 
         return (
-            <div className="container">
-                <NavBar userData={this.props.userData} restart={this.props.restart}/>
-                <div className="jumbotron">
-                    <h1>{this.props.userData.name}</h1>
-                    <h2>{this.props.userData.uuid}</h2>
-                    <h3>Certificates: {Object.keys(this.state.certificates).length}</h3>
-                </div>
+        <div>
+            <NavBar userData={this.props.userData} restart={this.props.restart}/>
 
-                {this.state.successText && <div className="alert alert-success">{this.state.successText}</div>}
-                <br/>
-                {this.state.errorText && <div className="alert alert-danger">{this.state.errorText}</div>}
+            <header>
+                
+                <div className="container lower">
+                    <h3>{this.props.userData.uuid}</h3>
+                    <h4>Certificates: {Object.keys(this.state.certificates).length}</h4>
 
-                <div className="row">
-                    <div className="col-xs-12">
-                        <div className="form-inline">
-                            <div className="form-group">
-                                <label className="sr-only" htmlFor="userUUID">userUUID</label>
-                                <input id="userUUID" value={this.state.userUUID} onChange={this.handleInputChange} name="userUUID" placeholder="User UUID" type="text" className="form-control"/>
-                            </div>
-                            <div className="form-group">
-                                <label className="sr-only" htmlFor="newCertName">newCertName</label>
-                                <input value={this.state.newCertName} onChange={this.handleInputChange} name="newCertName" placeholder="Certificate Name" type="text" className="form-control"/>
+                    {this.state.successText && <div className="alert alert-success">{this.state.successText}</div>}
+                    <br/>
+                    {this.state.errorText && <div className="alert alert-danger">{this.state.errorText}</div>}
+
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <div className="form-inline">
+                                <div className="form-group">
+                                    <label className="sr-only" htmlFor="userUUID">userUUID</label>
+                                    <input id="userUUID" value={this.state.userUUID} onChange={this.handleInputChange} name="userUUID" placeholder="User UUID" type="text" className="form-control"/>
+                                </div>
+                                <div className="form-group">
+                                    <label className="sr-only" htmlFor="newCertName">newCertName</label>
+                                    <input value={this.state.newCertName} onChange={this.handleInputChange} name="newCertName" placeholder="Certificate Name" type="text" className="form-control"/>
+                                </div>
+                                <button className="btn btn-default" type="button" onClick={this.addNewCert}>Add</button>
                             </div>
                             <div className="form-group">
                                 <label className="sr-only" htmlFor="newFileName">newFileName</label>
@@ -114,16 +118,18 @@ class Academic extends Component{
                             <button className="btn btn-default" type="button" onClick={this.addNewCert}>Add</button>
                         </div>
                     </div>
-                </div>
-                    
-                
-                
-                <h3 className="page-header">Accepted Certificates</h3>
-                <Certificates isOrg={true} certificates={this.state.certificates}/>
 
-                <h3 className="page-header">Not Accepted Certificates</h3>
-                <Certificates isOrg={true} certificates={this.state.pending_certificates}/>
-            </div>
+
+
+                    <h3 className="page-header">Accepted Certificates</h3>
+                    <Certificates isOrg={true} certificates={this.state.certificates}/>
+
+                    <h3 className="page-header">Not Accepted Certificates</h3>
+                    <Certificates isOrg={true} certificates={this.state.pending_certificates}/>
+                </div>
+            </header>
+        </div>
+        
         )
     }
 }

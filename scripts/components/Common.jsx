@@ -15,23 +15,23 @@ function getFileName(filename){
 
 function NavBar(props) {
     return (
-        <div className="navbar navbar-default">
-            <div className="container-fluid">
-                <div className="navbar-header">
-                    <a className="navbar-brand">
+        <nav id="mainNav" className="navbar navbar-default navbar-custom navbar-fixed-top affix-top absolute">
+            <div className="container">
+                <div className="navbar-header page-scroll">
+                    <a className="navbar-brand page-scroll" href="#page-top">
                         {props.userData.name}
                     </a>
 
                 </div>
 
                 <div className="collapse navbar-collapse">
-                    <p className="navbar-text navbar-right">
-                        <a className="navbar-link" onClick={() => {props.restart()}}>Logout</a>
-                    </p>
+                    <ul className="nav navbar-nav navbar-right">
+                        <li><a className="page-scroll" onClick={() => {props.restart()}}>Logout</a></li>
+                    </ul>
                 </div>
 
             </div>
-        </div>
+        </nav>
     )
 }
 function Buttons(props){
@@ -78,7 +78,7 @@ function Certificates(props) {
     Object.keys(props.certificates).forEach((key, index) => {
         let hockey = key;
         let cert = (
-            <div key={key} className="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+            <div key={key} className="col-lg-4 col-md-6 col-sm-6 col-xs-12 black-font">
                 <div className="panel panel-default">
                     <div className="panel-heading">as{hockey}</div>
                     <div className="panel-body">
