@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import * as constants from '../constants.js'
+import {NavBar, Certificates, SimpleNavbar} from './Common'
+
 
 function LoginHeader(props) {
     let text = "Login as user";
@@ -37,7 +39,7 @@ function LoginHeader(props) {
 
 function CenterContainerPanel(props) {
     return (
-        <div className="container">
+        <div className="container very-low black-font">
             <div className="row row-centered">
                 <div className="col-xs-8 col-centered">
 
@@ -277,12 +279,18 @@ class Login extends Component {
             form = <UserForm database={this.props.database} loggedIn={this.props.loggedIn}/>;
         
         return (
-            <CenterContainerPanel>
-                <LoginHeader type={this.props.role} restart={this.props.restart}/>
-                <div className="panel-body">
-                    {form}
-                </div>
-            </CenterContainerPanel>
+        <div>
+            <SimpleNavbar/>
+            <header>
+                <CenterContainerPanel>
+                    <LoginHeader type={this.props.role} restart={this.props.restart}/>
+                    <div className="panel-body">
+                        {form}
+                    </div>
+                </CenterContainerPanel>
+            </header>
+        </div>
+            
         )
         
     }

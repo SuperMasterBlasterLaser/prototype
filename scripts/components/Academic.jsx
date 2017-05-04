@@ -109,13 +109,14 @@ class Academic extends Component{
                                     <label className="sr-only" htmlFor="newCertName">newCertName</label>
                                     <input value={this.state.newCertName} onChange={this.handleInputChange} name="newCertName" placeholder="Certificate Name" type="text" className="form-control"/>
                                 </div>
+                                <div className="form-group">
+                                    <label className="sr-only" htmlFor="newFileName">newFileName</label>
+                                    <input value={this.state.newFileName} onChange={this.handleInputChange} name="newFileName" placeholder="File Name" type="file" className="form-control"/>
+                                </div>
                                 <button className="btn btn-default" type="button" onClick={this.addNewCert}>Add</button>
                             </div>
-                            <div className="form-group">
-                                <label className="sr-only" htmlFor="newFileName">newFileName</label>
-                                <input value={this.state.newFileName} onChange={this.handleInputChange} name="newFileName" placeholder="File Name" type="file" className="form-control"/>
-                            </div>
-                            <button className="btn btn-default" type="button" onClick={this.addNewCert}>Add</button>
+                            
+                            
                         </div>
                     </div>
 

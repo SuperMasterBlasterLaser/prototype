@@ -13,6 +13,7 @@ class Organization extends Component{
         this.state = {
             certificates: {},
             pending_certificates: {},
+            certificates_for_view: {},
             errorText: '', successText: '', userUUID: '', newCertName: '', newFileName: '',
             organizationRef: this.props.database.ref(`/organizations/${this.props.userData.uuid}`),
             usersRef: this.props.database.ref('/users')
@@ -31,6 +32,12 @@ class Organization extends Component{
         this.props.database.ref(`/pending_certificates`).orderByChild(`organization`).equalTo(`${this.props.userData.uuid}`).on('value', (snapshot) => {
             if (snapshot.val()) {
                 this.setState({pending_certificates: snapshot.val(), errorText: ''})
+            }
+        });
+
+        this.props.database.ref(`/certificates_for_view`).orderByChild(`organization`).equalTo(`${this.props.userData.uuid}`).on('value', (snapshot) => {
+            if (snapshot.val()) {
+                this.setState({certificates_for_view: snapshot.val(), errorText: ''})
             }
         });
 
@@ -110,23 +117,26 @@ class Organization extends Component{
                                         <label className="sr-only" htmlFor="newCertName">newCertName</label>
                                         <input value={this.state.newCertName} onChange={this.handleInputChange} name="newCertName" placeholder="Certificate Name" type="text" className="form-control"/>
                                     </div>
+                                    <div className="form-group">
+                                        <label className="sr-only" htmlFor="newFileName">newFileName</label>
+                                        <input value={this.state.newFileName} onChange={this.handleInputChange} name="newFileName" placeholder="File Name" type="file" className="form-control"/>
+                                    </div>
                                     <button className="btn btn-default" type="button" onClick={this.addNewCert}>Add</button>
                                 </div>
                             </div>
-                            <div className="form-group">
-                                 <label className="sr-only" htmlFor="newFileName">newFileName</label>
-                                 <input value={this.state.newFileName} onChange={this.handleInputChange} name="newFileName" placeholder="File Name" type="file" className="form-control"/>
-                            </div>
-                            <button className="btn btn-default" type="button" onClick={this.addNewCert}>Add</button>
+                            
+                            
                         </div>
 
 
-
+                        <h3 className="page-header">Certificates for view</h3>
+                        <Certificates isOrg={true} isForView={true} database={this.props.database} certificates={this.state.certificates_for_view}/>
+                        
                         <h3 className="page-header">Accepted Certificates</h3>
-                        <Certificates isOrg={true} certificates={this.state.certificates}/>
+                        <Certificates isOrg={true} isForView={false} certificates={this.state.certificates}/>
 
                         <h3 className="page-header">Not Accepted Certificates</h3>
-                        <Certificates isOrg={true} certificates={this.state.pending_certificates}/>
+                        <Certificates isOrg={true} isForView={false} certificates={this.state.pending_certificates}/>
                     </div>
                 </header>
                 

@@ -11,10 +11,22 @@ class User extends Component {
             certificates: {},
             pending_certificates: {},
             errorText: '',
+            certName: '',
+            // receiverUUID:,
             usersRef: this.props.database.ref(`/users/${this.props.userData.uuid}`)
         }
     }
 
+    // sendCertificate(){
+    //     this.props.database.ref(`/certificates`).orderByChild(`user`).equalTo(`${this.props.userData.uuid}`).on('value', (snapshot) => {
+    //         if (snapshot.val()) {
+    //             this.setState({certificates: snapshot.val(), errorText: ''})
+    //         } else {
+    //             this.setState({errorText: 'No accepted certificates'})
+    //         }
+    //     });
+    //    
+    // }
     componentDidMount() {
         this.props.database.ref(`/certificates`).orderByChild(`user`).equalTo(`${this.props.userData.uuid}`).on('value', (snapshot) => {
             if (snapshot.val()) {

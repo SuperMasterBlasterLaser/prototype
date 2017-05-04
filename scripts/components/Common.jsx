@@ -34,6 +34,54 @@ function NavBar(props) {
         </nav>
     )
 }
+
+function SimpleNavbar() {
+    return (
+        <nav id="mainNav" className="navbar navbar-default navbar-custom navbar-fixed-top affix-top absolute">
+            <div className="container">
+                <div className="navbar-header page-scroll">
+                    <a className="navbar-brand page-scroll" href="#page-top">
+                        Networking
+                    </a>
+
+                </div>
+
+                <div className="collapse navbar-collapse">
+                    <ul className="nav navbar-nav navbar-right">
+                        <li><a href="#" className="page-scroll">Mussabekov Daniyar</a></li>
+                        <li><a href="#" className="page-scroll">Burkhanov Rustem</a></li>
+                        <li><a href="#" className="page-scroll">Bulgakbayeva Alua</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    )
+}
+
+function Clear(props){
+    if (props.isForView){
+        return (
+
+            <div className="row">
+                <div className="btn-group btn-group-lg btn-group-justified" role="group">
+
+                    <a href="#" role="button" type="button" className="btn btn-warning" onClick={() => {
+                        props.database.ref(`certificates_for_view/`).child(props.uuid).remove();
+                        props.mount();
+                    }}>
+                        <span className="glyphicon glyphicon-ok"></span> Accept
+                    </a>
+                </div>
+
+            </div>
+        )
+    } else return(
+        <div/>
+    );
+
+}
+
 function Buttons(props){
     if (props.isPending){
         return (
@@ -95,8 +143,11 @@ function Certificates(props) {
                         <div className="well"><p style={{wordWrap:'break-word'}}>{props.certificates[key].sha}</p></div>
                         <label className="label label-info">File Name</label>
                         <div className="well"><p style={{wordWrap:'break-word'}}>{getFileName(props.certificates[key].filename)}</p></div>
+                        
                         <Buttons isPending={props.isPending} database={props.database} uuid={hockey} certificate={props.certificates[key]}/>
-
+                        
+                        <Clear isForView={props.isForView} database={props.database} uuid={hockey} certificate={props.certificates[key]} />
+                        
                     </div>
                 </div>
             </div>
@@ -108,4 +159,4 @@ function Certificates(props) {
 
 }
 
-export {NavBar, Certificates}
+export {NavBar, Certificates, SimpleNavbar}
